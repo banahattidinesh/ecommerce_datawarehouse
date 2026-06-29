@@ -1,0 +1,33 @@
+CREATE TABLE raw_transactions (
+    transaction_id SERIAL PRIMARY KEY,
+    order_date TIMESTAMP,
+    customer_name VARCHAR(100),
+    customer_city VARCHAR(50),
+    customer_email VARCHAR(100),
+    product_sku VARCHAR(20),
+    product_name VARCHAR(100),
+    product_category VARCHAR(50),
+    quantity INT,
+    unit_price DECIMAL(10, 2)
+);
+
+INSERT INTO raw_transactions 
+(order_date, customer_name, customer_city, customer_email, product_sku, product_name, product_category, quantity, unit_price)
+VALUES 
+('2023-10-01 10:15:00', 'Alice Smith', 'New York', 'alice@email.com', 'TSH-01', 'Classic Logo T-Shirt', 'Apparel', 2, 25.00),
+('2023-10-01 11:30:00', 'Bob Jones', 'London', 'bob.j@email.co.uk', 'MUG-99', 'Ceramic Coffee Mug', 'Accessories', 1, 15.50),
+('2023-10-02 09:45:00', 'Alice Smith', 'New York', 'alice@email.com', 'HOO-42', 'Heavyweight Hoodie', 'Apparel', 1, 65.00),
+('2023-10-02 14:20:00', 'Charlie Brown', 'Toronto', 'cbrown@email.ca', 'TSH-01', 'Classic Logo T-Shirt', 'Apparel', 4, 25.00),
+('2023-10-03 16:00:00', 'Bob Jones', 'London', 'bob.j@email.co.uk', 'TSH-01', 'Classic Logo T-Shirt', 'Apparel', 1, 25.00);
+
+
+
+SELECT 
+    product_category, 
+    SUM(quantity) AS total_items
+FROM raw_transactions
+GROUP BY product_category;
+
+
+select customer_city, sum(quantity * unit_price) as total_sales
+ from raw_transactions group by customer_city;
