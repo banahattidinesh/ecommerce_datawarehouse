@@ -31,3 +31,6 @@ GROUP BY product_category;
 
 select customer_city, sum(quantity * unit_price) as total_sales
  from raw_transactions group by customer_city;
+
+
+ 
