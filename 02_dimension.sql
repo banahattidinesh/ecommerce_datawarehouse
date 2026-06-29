@@ -25,3 +25,4 @@ SELECT DISTINCT customer_name, customer_city, customer_email
 FROM raw_transactions;
 
 SELECT * FROM dim_customer;
+
