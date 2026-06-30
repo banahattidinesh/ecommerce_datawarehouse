@@ -30,3 +30,11 @@ join fact_sales b on
 a.product_key = b.product_key
 group by a.product_category 
 order by total_amount desc;
+
+
+select b.is_weekend , sum(a.total_amount) AS total_amount
+ from fact_sales a
+join dim_date b on
+    a.order_date::date = b.full_date
+    GROUP BY b.is_weekend
+    order by total_amount desc;
